@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Christ Generation Ministry (CGM)</title>
+  <meta name="description" content="Christ Generation Ministry — raising a generation that reflects the glory of Christ." />
+
+  <style>
+    :root{
+      --bg: #0b0c0f;          /* deep charcoal */
+      --panel: #0f1118;       /* card bg */
+      --panel2: #0c0f14;
+      --text: #f3f0e6;        /* warm off-white */
+      --muted: #c9c3b1;
+
+      --gold: #d4af37;        /* metallic gold */
+      --gold2: #e8d9a8;       /* champagne */
+      --gold3: #b88a1a;       /* deeper gold */
+
+      --border: rgba(212,175,55,.28);
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 22px;
+
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0;
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(212,175,55,.09), transparent 55%),
+        radial-gradient(850px 520px at 100% 10%, rgba(232,217,168,.06), transparent 55%),
+        linear-gradient(180deg, #07080b 0%, var(--bg) 30%, #07080b 100%);
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      letter-spacing: .2px;
+    }
+
+    /* Typography */
+    .serif{
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      letter-spacing: .3px;
+    }
+    h1,h2,h3{
+      margin:0 0 10px 0;
+      line-height: 1.15;
+    }
+    h1{ font-size: clamp(36px, 5vw, 58px); }
+    h2{ font-size: clamp(26px, 3vw, 36px); }
+    h3{ font-size: clamp(18px, 2vw, 22px); }
+    p{ margin: 0 0 14px 0; color: var(--muted); }
+
+    /* Layout */
+    .wrap{
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+    section{
+      padding: 84px 0;
+      position: relative;
+    }
+
+    /* Top nav */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 9, 12, .65);
+      border-bottom: 1px solid rgba(212,175,55,.18);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .mark{
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background:
+        radial-gradient(12px 12px at 30% 35%, rgba(255,255,255,.20), transparent 60%),
+        linear-gradient(135deg, rgba(212,175,55,.95), rgba(184,138,26,.55));
+      box-shadow: 0 10px 30px rgba(212,175,55,.18);
+      border: 1px solid rgba(232,217,168,.35);
+    }
+    .logo{
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      object-fit: cover; /* for png/jpg/webp */
+      border: 1px solid rgba(232,217,168,.35);
+      box-shadow: 0 10px 30px rgba(212,175,55,.18);
+      background: rgba(0,0,0,.2);
+    }
+    .brand strong{ font-weight: 700; }
+    nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a{
+      color: var(--muted);
+      text-decoration:none;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    nav a:hover{
+      color: var(--text);
+      border-color: rgba(212,175,55,.22);
+      background: rgba(212,175,55,.06);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 86px 0 70px;
+      overflow: hidden;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.22);
+      background: rgba(212,175,55,.06);
+      color: var(--gold2);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .kicker .dot{
+      width:7px; height:7px; border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(212,175,55,.12);
+    }
+    .title{
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .title .gold{
+      background: linear-gradient(90deg, var(--gold2), var(--gold), var(--gold3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .subtitle{
+      font-size: clamp(16px, 2vw, 18px);
+      color: #ded7c6;
+      margin-bottom: 20px;
+      max-width: 56ch;
+    }
+    .hero-actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 650;
+      letter-spacing: .2px;
+      text-decoration:none;
+      border: 1px solid rgba(212,175,55,.30);
+      cursor: pointer;
+      user-select: none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-size: 14px;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn-primary{
+      background: linear-gradient(135deg, rgba(212,175,55,.92), rgba(184,138,26,.78));
+      color: #121212;
+      border-color: rgba(232,217,168,.55);
+      box-shadow: 0 16px 40px rgba(212,175,55,.14);
+    }
+    .btn-ghost{
+      background: rgba(212,175,55,.06);
+      color: var(--text);
+    }
+    .btn-outline{
+      background: transparent;
+      color: var(--gold2);
+    }
+    .btn-outline:hover{
+      background: rgba(212,175,55,.08);
+    }
+
+    /* Decorative right panel */
+    .hero-card{
+      border-radius: var(--radius);
+      background:
+        radial-gradient(560px 220px at 20% 20%, rgba(212,175,55,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 10%, rgba(232,217,168,.10), transparent 55%),
+        linear-gradient(180deg, rgba(15,17,24,.95), rgba(10,12,18,.95));
+      border: 1px solid rgba(212,175,55,.22);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+      min-height: 260px;
+    }
+    .gold-lines{
+      position:absolute;
+      inset:-20px;
+      background:
+        linear-gradient(90deg, rgba(212,175,55,.0) 0%, rgba(212,175,55,.12) 50%, rgba(212,175,55,.0) 100%),
+        repeating-linear-gradient(135deg, rgba(232,217,168,.0) 0 14px, rgba(232,217,168,.05) 14px 15px);
+      opacity: .38;
+      transform: rotate(-6deg);
+      pointer-events:none;
+      filter: blur(.2px);
+    }
+    .hero-card-content{
+      position: relative;
+      display:flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .stat{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(212,175,55,.18);
+      background: rgba(0,0,0,.22);
+    }
+    .stat b{ color: var(--gold2); font-size: 14px; }
+    .stat span{ color: var(--muted); font-size: 13px; }
+
+    /* Section divider */
+    .divider{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.35), transparent);
+      margin: 18px 0 0;
+    }
+
+    /* Cards + grids */
+    .grid-2{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(15,17,24,.92), rgba(10,12,18,.92));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      position: relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius: inherit;
+      background: radial-gradient(420px 140px at 15% 0%, rgba(212,175,55,.16), transparent 55%);
+      opacity:.8;
+      pointer-events:none;
+    }
+    .card > *{ position: relative; }
+    .meta{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      margin: 10px 0 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.20);
+      background: rgba(212,175,55,.06);
+      color: var(--gold2);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    /* Teaching thumbnails */
+    .thumb{
+      height: 140px;
+      border-radius: 18px;
+      border: 1px solid rgba(212,175,55,.18);
+      background:
+        radial-gradient(220px 120px at 30% 35%, rgba(232,217,168,.13), transparent 60%),
+        linear-gradient(135deg, rgba(212,175,55,.22), rgba(0,0,0,.2));
+      margin-bottom: 12px;
+      position: relative;
+      overflow:hidden;
+    }
+    .thumb::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      transform: translateX(-60%);
+      animation: shimmer 3.4s ease-in-out infinite;
+      opacity:.55;
+    }
+    @keyframes shimmer{
+      0%{ transform: translateX(-80%); }
+      60%{ transform: translateX(120%); }
+      100%{ transform: translateX(120%); }
+    }
+
+    /* Quotes */
+    blockquote{
+      margin:0;
+      padding: 20px 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(212,175,55,.18);
+      background: rgba(212,175,55,.05);
+      position: relative;
+      overflow:hidden;
+    }
+    blockquote::before{
+      content:"“";
+      position:absolute;
+      left: 14px;
+      top: -24px;
+      font-size: 120px;
+      color: rgba(212,175,55,.16);
+      font-family: ui-serif, Georgia, serif;
+      line-height: 1;
+      pointer-events:none;
+    }
+    blockquote p{
+      color: #e3dece;
+      margin: 0 0 8px 0;
+      position: relative;
+    }
+    blockquote footer{
+      color: var(--gold2);
+      font-size: 13px;
+      position: relative;
+    }
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .contact-item{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(212,175,55,.18);
+      background: rgba(0,0,0,.22);
+    }
+    .icon{
+      width: 36px; height: 36px;
+      border-radius: 14px;
+      border: 1px solid rgba(232,217,168,.30);
+      background: linear-gradient(135deg, rgba(212,175,55,.35), rgba(0,0,0,.2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: #0b0c0f;
+      font-weight: 900;
+      flex: 0 0 auto;
+      box-shadow: 0 12px 30px rgba(212,175,55,.10);
+    }
+    .contact-item a{
+      color: var(--gold2);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(232,217,168,.35);
+    }
+    .contact-item a:hover{
+      border-bottom-color: rgba(232,217,168,.8);
+    }
+
+    /* Footer */
+    footer.site-footer{
+      padding: 28px 0 40px;
+      border-top: 1px solid rgba(212,175,55,.18);
+      background: rgba(0,0,0,.22);
+    }
+    .footer-inner{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      nav ul{ justify-content: flex-start; }
+    }
+
+    /* Accessibility helper */
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    /* Video Cards */
+    .video-card{
+      display:block;
+      text-decoration:none;
+      color: var(--text);
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(15,17,24,.92), rgba(10,12,18,.92));
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .video-card:hover{
+      transform: translateY(-6px);
+      border-color: rgba(212,175,55,.55);
+    }
+
+    .video-thumb{
+      position: relative;
+      height: 190px;
+      overflow:hidden;
+    }
+
+    .video-thumb img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transition: transform .4s ease;
+    }
+
+    .video-card:hover .video-thumb img{
+      transform: scale(1.05);
+    }
+
+    /* Play button */
+    .play-button{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      width:70px;
+      height:70px;
+      border-radius:50%;
+      background: rgba(212,175,55,.85);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .play-button::before{
+      content:"";
+      border-left:18px solid #0b0c0f;
+      border-top:10px solid transparent;
+      border-bottom:10px solid transparent;
+      margin-left:4px;
+    }
+    .thumb-img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<script>
+fetch("devotional.json")
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById("dev-verse").textContent = data.verse;
+    document.getElementById("dev-reflection").textContent = data.reflection;
+    document.getElementById("dev-prayer").textContent = data.prayer;
+  })
+  .catch(error => {
+    console.error("Devotional load error:", error);
+  });
+</script>
+<body>
+  <!-- Top Bar -->
+  <header class="topbar" role="banner">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <!-- <span class="mark" aria-hidden="true"></span> -->
+         <img class="logo" src="logo.png" alt="CGM logo" />
+        <span><strong>CGM</strong> <span style="color:var(--gold2)">•</span> Christ Generation Ministry</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#mission">Mission</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#wednesday">Wednesday Service</a></li>
+          <li><a href="#thursday">Thursday Live</a></li>
+          <li><a href="#devotionals">Devotionals</a></li>
+          <li><a href="#testimonies">Testimonies</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top">
+    <section class="hero" aria-label="Top section">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Faith • Fellowship • Growth</span>
+          </div>
+
+          <h1 class="title serif">
+            <span class="gold">Christ Generation Ministry</span>
+          </h1>
+
+          <p class="subtitle">
+            Raising a generation that reflects the glory of Christ, grounded in the Word,
+            strengthened by prayer, and united in fellowship.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#mission" aria-label="Go to Mission section">Our Mission</a>
+            <a class="btn btn-outline" href="#teaching" aria-label="Go to Teaching section">Watch Teaching</a>
+            <a class="btn btn-ghost" href="#contact" aria-label="Go to Contact section">Contact Us</a>
+          </div>
+
+          <div class="divider" aria-hidden="true"></div>
+          <p style="margin-top:14px;color:#d9d2c0;">
+            We invite you to discover your place in our community, where faith and fellowship come together to inspire growth.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="Quick details">
+          <div class="gold-lines" aria-hidden="true"></div>
+          <div class="hero-card-content">
+            <div class="stat">
+              <b>In-person Gathering</b>
+              <span>Wednesdays • 7:30 PM – 10:30 PM</span>
+            </div>
+            <div class="stat">
+              <b>Online Live Service</b>
+              <span>Thursdays • 11:00 PM – 1:30 AM</span>
+            </div>
+            <div class="stat">
+              <b>Teaching Videos</b>
+              <span>YouTube • New messages & streams</span>
+            </div>
+            <a class="btn btn-outline" href="https://www.youtube.com/@ChristGenerationMinistry-g4i" target="_blank" rel="noreferrer">
+              Visit YouTube Channel
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section id="mission" aria-label="Mission section">
+      <div class="wrap">
+        <div class="pill">Our Mission</div>
+        <h2 class="serif">Empowering the Next Generation for a Brighter Future</h2>
+        <p style="max-width: 78ch;">
+          We are dedicated to empowering this generation to live out the fullness of Christ in every aspect of their lives. 
+          Our mission is to equip this generation to become the perfect expression of Jesus Christ through powerful teachings, 
+          inspirational messages, and practical guidance rooted in God's Word. Join us as we grow in faith, purpose, and the love of Christ, 
+          making a lasting impact on the world around us.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3 class="serif">Word-Centered Teaching</h3>
+            <p>Sound doctrine and practical guidance rooted in Scripture for everyday life.</p>
+          </div>
+          <div class="card">
+            <h3 class="serif">Prayer & Worship</h3>
+            <p>A sacred space to seek God, grow in intimacy, and encounter His presence.</p>
+          </div>
+          <div class="card">
+            <h3 class="serif">Community & Discipleship</h3>
+            <p>Belonging, accountability, and mentorship that strengthens spiritual maturity.</p>
+          </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- TEACHING / YOUTUBE -->
+    <section id="teaching" aria-label="YouTube teaching videos section">
+      <div class="wrap">
+        <div class="pill">Teaching</div>
+        <h2 class="serif">Grow deeper through Spirit-led teaching</h2>
+        <p style="max-width: 78ch;">
+          Watch powerful teachings designed to strengthen your faith
+          and help you walk confidently in Christ.
+        </p>
+
+        <div class="grid-3" role="list" aria-label="Latest from our channel">
+          <!-- VIDEO 1 -->
+          <article class="card" role="listitem">
+            <!-- <div class="thumb" aria-hidden="true"></div> -->
+             <div class="thumb">
+              <img
+                class="thumb-img"
+                src="https://i.ytimg.com/vi/2rGM2yOgZjI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB1YHLWjdB3-D5TPL0Nu5V1XAtbGA"
+                alt="YouTube video thumbnail"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="serif">Vision</h3>
+            <p>Replace this with your most recent sermon title and a short 1–2 line summary.</p>
+            <a class="btn btn-outline" href="https://www.youtube.com/watch?v=TGHyiwRacQw&list=PLFmEy7TqxiJweDNVk22bdlXflUQb1zM3e&index=9" target="_blank" rel="noreferrer" aria-label="Watch latest message (add link)">Watch Now</a>
+          </article>
+          <!-- VIDEO 2 -->
+          <article class="card" role="listitem">
+            <!-- <div class="thumb" aria-hidden="true"></div> -->
+             <div class="thumb">
+              <img
+                class="thumb-img"
+                src="https://i.ytimg.com/vi/KHs_smswsqE/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBmF1P-pnkl6AztKPXHZFKZ56MxdQ"
+                alt="YouTube video thumbnail"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="serif">Faith</h3>
+            <p>Replace this with your most recent sermon title and a short 1–2 line summary.</p>
+            <a class="btn btn-outline" href="https://www.youtube.com/watch?v=KHs_smswsqE&list=PLFmEy7TqxiJw65ut3x40xfQTQuF2b02l5" target="_blank" rel="noreferrer" aria-label="Watch latest message (add link)">Watch Now</a>
+          </article>
+          <!-- VIDEO 3 -->
+          <article class="card" role="listitem">
+            <!-- <div class="thumb" aria-hidden="true"></div> -->
+             <div class="thumb">
+              <img
+                class="thumb-img"
+                src="https://i.ytimg.com/vi/fyrK7Hpr4EY/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA3OOj6K9Xwp62QVlhqxLSFBhbmJQ"
+                alt="YouTube video thumbnail"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="serif">Love</h3>
+            <p>Replace this with your most recent sermon title and a short 1–2 line summary.</p>
+            <a class="btn btn-outline" href="https://www.youtube.com/watch?v=fyrK7Hpr4EY&list=PLFmEy7TqxiJxcHhaQMxZaLSOQAfFxgTz-" target="_blank" rel="noreferrer" aria-label="Watch latest message (add link)">Watch Now</a>
+          </article>
+        </div>
+        <!-- <div class="grid-3" role="list" aria-label="Latest from our channel">
+            <a class="video-card" 
+              href="https://www.youtube.com/watch?v=TGHyiwRacQw&list=PLFmEy7TqxiJweDNVk22bdlXflUQb1zM3e&index=9" 
+              target="_blank" 
+              rel="noreferrer"
+              role="listitem">
+              <div class="video-thumb">
+                <img src="https://i.ytimg.com/vi/2rGM2yOgZjI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB1YHLWjdB3-D5TPL0Nu5V1XAtbGA" 
+                    alt="Latest message thumbnail">
+                <div class="play-button"></div>
+              </div>
+              <h3 class="serif"> Vision</h3>
+            </a>
+            <a class="video-card" 
+              href="https://www.youtube.com/watch?v=KHs_smswsqE&list=PLFmEy7TqxiJw65ut3x40xfQTQuF2b02l5" 
+              target="_blank" 
+              rel="noreferrer"
+              role="listitem">
+              <div class="video-thumb">
+                <img src="https://i.ytimg.com/vi/KHs_smswsqE/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBmF1P-pnkl6AztKPXHZFKZ56MxdQ" 
+                    alt="Teaching series thumbnail">
+                <div class="play-button"></div>
+              </div>
+              <h3 class="serif">Faith</h3>
+            </a>
+            <a class="video-card" 
+              href="https://www.youtube.com/watch?v=fyrK7Hpr4EY&list=PLFmEy7TqxiJxcHhaQMxZaLSOQAfFxgTz-" 
+              target="_blank" 
+              rel="noreferrer"
+              role="listitem">
+              <div class="video-thumb">
+                <img src="https://i.ytimg.com/vi/fyrK7Hpr4EY/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA3OOj6K9Xwp62QVlhqxLSFBhbmJQ" 
+                    alt="Live replay thumbnail">
+                <div class="play-button"></div>
+              </div>
+              <h3 class="serif">Love</h3>
+            </a>
+          </div> -->
+
+        <div style="margin-top: 16px; display:flex; gap: 12px; flex-wrap: wrap;">
+          <a class="btn btn-primary" href="https://www.youtube.com/@ChristGenerationMinistry-g4i" target="_blank" rel="noreferrer">
+            Visit Our YouTube Channel ↗
+          </a>
+          <!-- <a class="btn btn-ghost" href="https://www.youtube.com/@ChristGenerationMinistry-g4i/streams" target="_blank" rel="noreferrer">
+            See Previous Lives ↗
+          </a> -->
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- WEDNESDAY SERVICE -->
+    <section id="wednesday" aria-label="Wednesday service details section">
+      <div class="wrap">
+        <div class="pill">In-Person Service</div>
+        <h2 class="serif">Wednesday Worship Gathering</h2>
+        <p style="max-width: 78ch;">
+          A sacred evening of worship, prayer, and the teaching of the Word. Come expecting transformation.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="serif">Service Details</h3>
+            <div class="meta">
+              <span class="pill">🕊 Every Wednesday</span>
+              <span class="pill">⏰ 7:30 PM – 10:30 PM</span>
+              <span class="pill">📍 Al Maseed Building 501</span>
+            </div>
+            <p>Join us for a time dedicated to prayer, heartfelt worship, and the teaching of the Word.</p>
+            <a class="btn btn-outline" href="https://www.google.com/maps?q=place_id:ChIJW67SuDVDXz4R5mrVEAjaRDA" target="_blank" rel="noreferrer">Directions</a>
+          </div>
+
+          <div class="card">
+            <h3 class="serif">What to Expect</h3>
+            <p>
+              • Warm welcome and fellowship<br/>
+              • Extended worship and prayer<br/>
+              • Bible-centered teaching<br/>
+              • Time to connect after service
+            </p>
+            <a class="btn btn-ghost" href="#testimonies">Read Testimonies</a>
+          </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- THURSDAY LIVE -->
+    <section id="thursday" aria-label="Thursday live online service section">
+      <div class="wrap">
+        <div class="pill">Online Service</div>
+        <h2 class="serif">Thursday Live Service</h2>
+        <p style="max-width: 78ch;">
+          Connecting digitally is a vital part of our outreach. Join us online as we worship and grow together.
+        </p>
+        <div class="grid-2">
+          <div class="card" style="background: linear-gradient(180deg, rgba(212,175,55,.12), rgba(10,12,18,.92));">
+            <h3 class="serif">Live Details</h3>
+            <div class="meta">
+              <span class="pill">📡 Every Thursday</span>
+              <span class="pill">⏰ 11:00 PM – 1:30 AM</span>
+              <span class="pill">📺 YouTube & TikTok Live</span>
+            </div>
+            <p>Gather virtually to pray, and receive the Word.</p>
+            <div style="display:flex; gap: 12px; flex-wrap: wrap;">
+              <a class="btn btn-primary" href="https://www.youtube.com/@ChristGenerationMinistry-g4i/streams" target="_blank" rel="noreferrer">
+                Watch Previous Lives ↗
+              </a>
+              <a class="btn btn-outline" href="https://www.youtube.com/@ChristGenerationMinistry-g4i" target="_blank" rel="noreferrer">
+                YouTube Channel ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="serif">How to Join</h3>
+            <p>
+              • Subscribe to the channel and enable notifications<br/>
+              • Share the live with friends and family<br/>
+              • Participate in chat and prayer requests
+            </p>
+            <a class="btn btn-ghost" href="#contact">Send a Prayer Request</a>
+          </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- DEVOTIONALS -->
+    <section id="devotionals" aria-label="Daily devotionals section">
+      <div class="wrap">
+        <div class="pill">Devotionals</div>
+        <h2 class="serif">Strengthened in Christ</h2>
+        <p style="max-width: 78ch;">
+          Short encouragements designed to build consistency in Scripture, reflection, and prayer.
+        </p>
+
+        <!-- <div class="grid-3">
+          <div class="card">
+            <h3 class="serif">Scripture of the Day</h3>
+            <p>Feature a daily verse</p>
+          </div>
+          <div class="card">
+            <h3 class="serif">Reflection</h3>
+            <p>A short insight to apply the Word to real life—simple, practical, and uplifting.</p>
+          </div>
+          <div class="card">
+            <h3 class="serif">Prayer Focus</h3>
+            <p>One focused prayer point to align your heart with God’s purpose for the day.</p>
+          </div>
+        </div> -->
+        <div class="grid-3">
+          <div class="card">
+            <h3 class="serif">Scripture of the Day</h3>
+            <p id="dev-verse">Loading verse...</p>
+          </div>
+
+          <div class="card">
+            <h3 class="serif">Reflection</h3>
+            <p id="dev-reflection">Loading reflection...</p>
+          </div>
+
+          <div class="card">
+            <h3 class="serif">Prayer Focus</h3>
+            <p id="dev-prayer">Loading prayer...</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; display:flex; gap: 12px; flex-wrap: wrap;">
+          <!-- <a class="btn btn-primary" href="#contact">Subscribe for Daily Devotions</a> -->
+          <!-- <a class="btn btn-outline" href="#" aria-label="Read devotionals (add link)">Read Today’s Devotional</a> -->
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIES -->
+    <section id="testimonies" aria-label="Testimonies section">
+      <div class="wrap">
+        <div class="pill">Testimonies</div>
+        <h2 class="serif">Testimonies of Transformation</h2>
+        <p style="max-width: 78ch;">
+          God is moving. Here are stories of lives strengthened, restored, and renewed through faith and community.
+        </p>
+
+        <div class="grid-2">
+          <blockquote>
+            <p>
+              Through CGM, I rediscovered my purpose and deepened my faith. The teaching and worship changed my spiritual life.
+            </p>
+            <footer>— Member</footer>
+          </blockquote>
+
+          <blockquote>
+            <p>
+              Every gathering leaves me spiritually renewed. The community feels like family, and the Word is always timely.
+            </p>
+            <footer>— Attendee</footer>
+          </blockquote>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <a class="btn btn-outline" href="#contact">Share Your Testimony</a>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-label="Contact us section">
+      <div class="wrap">
+        <div class="pill">Contact Us</div>
+        <h2 class="serif">Connect with our community</h2>
+        <p style="max-width: 78ch;">
+          We’d love to hear from you—whether you have a question, need prayer, or want to get involved.
+        </p>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3 class="serif">Get in Touch</h3>
+
+            <div class="contact-item" style="margin-top: 14px;">
+              <div class="icon" aria-hidden="true">☎</div>
+              <div>
+                <div style="color:#e3dece; font-weight:650;">Phone</div>
+                <a href="tel:+971566183870" aria-label="Call +971 56 618 3870">+971 56 618 3870</a>
+              </div>
+            </div>
+
+            <div class="contact-item" style="margin-top: 12px;">
+              <div class="icon" aria-hidden="true">✉</div>
+              <div>
+                <div style="color:#e3dece; font-weight:650;">Email</div>
+                <a href="mailto:CGministries24@gmail.com" aria-label="Email hello at CGministries24@gmail dot com">CGministries24@gmail.com</a>
+                <div style="color:var(--muted); font-size: 13px; margin-top: 4px;">
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 14px; display:flex; gap: 12px; flex-wrap: wrap;">
+              <a class="btn btn-primary" href="mailto:CGministries24@gmail.com?subject=CGM%20Inquiry">Send Email</a>
+              <a class="btn btn-ghost" href="tel:+971566183870">Call Now</a>
+            </div>
+          </div>
+
+          <!-- <div class="card">
+            <h3 class="serif">Prayer Request / Message</h3>
+            <p>Use this simple form (connect it to your backend later, or use a form service).</p>
+
+            <form action="#" method="post" aria-label="Contact form">
+              <label class="sr-only" for="name">Name</label>
+              <input id="name" name="name" placeholder="Your name"
+                     style="width:100%; padding:12px 14px; border-radius: 14px; border:1px solid rgba(212,175,55,.22); background: rgba(0,0,0,.22); color: var(--text); outline:none;"
+                     />
+
+              <div style="height:10px;"></div>
+
+              <label class="sr-only" for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="Your email"
+                     style="width:100%; padding:12px 14px; border-radius: 14px; border:1px solid rgba(212,175,55,.22); background: rgba(0,0,0,.22); color: var(--text); outline:none;"
+                     />
+
+              <div style="height:10px;"></div>
+
+              <label class="sr-only" for="msg">Message</label>
+              <textarea id="msg" name="message" rows="5" placeholder="Write your message or prayer request..."
+                        style="width:100%; padding:12px 14px; border-radius: 14px; border:1px solid rgba(212,175,55,.22); background: rgba(0,0,0,.22); color: var(--text); outline:none; resize: vertical;"></textarea>
+
+              <div style="height:12px;"></div>
+
+              <button class="btn btn-outline" type="button"
+                      onclick="alert('This demo form is not connected yet. Hook it to your backend or a form service.');">
+                Submit (demo)
+              </button>
+            </form>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-inner">
+      <div>
+        <span class="serif" style="color:var(--gold2); font-weight:700;">Christ Generation Ministry</span>
+        <span style="color:var(--muted);"> • CGM</span>
+      </div>
+      <div>© <span id="year"></span> All Rights Reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // Set footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
