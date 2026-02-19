@@ -569,6 +569,29 @@
       font-size: 12px;
       margin-top: 10px;
     }
+
+    /* FOR THE TEACHINGS SECTION */
+    .teachings-row{
+      margin-top: 18px;
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 6px 4px 14px;
+      scroll-snap-type: x mandatory;
+    }
+    .teachings-row::-webkit-scrollbar{ height: 10px; }
+    .teachings-row::-webkit-scrollbar-thumb{
+      background: rgba(212,175,55,.25);
+      border-radius: 999px;
+    }
+    .teachings-row::-webkit-scrollbar-track{
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+    }
+    .teachings-row .card{
+      flex: 0 0 340px;
+      scroll-snap-align: start;
+    }
   </style>
 </head>
 
@@ -619,6 +642,32 @@ fetch("devotional.json")
       `).join("");
     })
     .catch(err => console.error("Articles load error:", err));
+</script>
+
+<!-- script to load teachings -->
+<script>
+  fetch("teachings.json")
+    .then(r => r.json())
+    .then(items => {
+      const row = document.getElementById("teachingsRow");
+
+      row.innerHTML = items.map(t => `
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img
+              class="thumb-img"
+              src="${escapeHtml(t.thumbnail)}"
+              alt="YouTube video thumbnail"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="serif">${escapeHtml(t.title || "Untitled")}</h3>
+          <p>${escapeHtml(t.excerpt || "")}</p>
+          <a class="btn btn-outline" href="${escapeHtml(t.video)}" target="_blank" rel="noreferrer" aria-label="Watch ${escapeHtml(t.title)}">Watch Now</a>
+        </article>
+      `).join("");
+    })
+    .catch(err => console.error("Teachings load error:", err));
 </script>
 
 <body>
@@ -742,91 +791,9 @@ fetch("devotional.json")
           and help you walk confidently in Christ.
         </p>
 
-        <div class="grid-3" role="list" aria-label="Latest from our channel">
-          <!-- VIDEO 1 -->
-          <article class="card" role="listitem">
-            <!-- <div class="thumb" aria-hidden="true"></div> -->
-             <div class="thumb">
-              <img
-                class="thumb-img"
-                src="https://i.ytimg.com/vi/2rGM2yOgZjI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB1YHLWjdB3-D5TPL0Nu5V1XAtbGA"
-                alt="YouTube video thumbnail"
-                loading="lazy"
-              />
-            </div>
-            <h3 class="serif">Vision</h3>
-            <p>Replace this with your most recent sermon title and a short 1–2 line summary.</p>
-            <a class="btn btn-outline" href="https://www.youtube.com/watch?v=TGHyiwRacQw&list=PLFmEy7TqxiJweDNVk22bdlXflUQb1zM3e&index=9" target="_blank" rel="noreferrer" aria-label="Watch latest message (add link)">Watch Now</a>
-          </article>
-          <!-- VIDEO 2 -->
-          <article class="card" role="listitem">
-            <!-- <div class="thumb" aria-hidden="true"></div> -->
-             <div class="thumb">
-              <img
-                class="thumb-img"
-                src="https://i.ytimg.com/vi/KHs_smswsqE/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBmF1P-pnkl6AztKPXHZFKZ56MxdQ"
-                alt="YouTube video thumbnail"
-                loading="lazy"
-              />
-            </div>
-            <h3 class="serif">Faith</h3>
-            <p>Replace this with your most recent sermon title and a short 1–2 line summary.</p>
-            <a class="btn btn-outline" href="https://www.youtube.com/watch?v=KHs_smswsqE&list=PLFmEy7TqxiJw65ut3x40xfQTQuF2b02l5" target="_blank" rel="noreferrer" aria-label="Watch latest message (add link)">Watch Now</a>
-          </article>
-          <!-- VIDEO 3 -->
-          <article class="card" role="listitem">
-            <!-- <div class="thumb" aria-hidden="true"></div> -->
-             <div class="thumb">
-              <img
-                class="thumb-img"
-                src="https://i.ytimg.com/vi/fyrK7Hpr4EY/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA3OOj6K9Xwp62QVlhqxLSFBhbmJQ"
-                alt="YouTube video thumbnail"
-                loading="lazy"
-              />
-            </div>
-            <h3 class="serif">Love</h3>
-            <p>Replace this with your most recent sermon title and a short 1–2 line summary.</p>
-            <a class="btn btn-outline" href="https://www.youtube.com/watch?v=fyrK7Hpr4EY&list=PLFmEy7TqxiJxcHhaQMxZaLSOQAfFxgTz-" target="_blank" rel="noreferrer" aria-label="Watch latest message (add link)">Watch Now</a>
-          </article>
+        <div class="teachings-row" id="teachingsRow" role="list" aria-label="Latest from our channel">
+          <!-- JS injects teaching cards here -->
         </div>
-        <!-- <div class="grid-3" role="list" aria-label="Latest from our channel">
-            <a class="video-card" 
-              href="https://www.youtube.com/watch?v=TGHyiwRacQw&list=PLFmEy7TqxiJweDNVk22bdlXflUQb1zM3e&index=9" 
-              target="_blank" 
-              rel="noreferrer"
-              role="listitem">
-              <div class="video-thumb">
-                <img src="https://i.ytimg.com/vi/2rGM2yOgZjI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB1YHLWjdB3-D5TPL0Nu5V1XAtbGA" 
-                    alt="Latest message thumbnail">
-                <div class="play-button"></div>
-              </div>
-              <h3 class="serif"> Vision</h3>
-            </a>
-            <a class="video-card" 
-              href="https://www.youtube.com/watch?v=KHs_smswsqE&list=PLFmEy7TqxiJw65ut3x40xfQTQuF2b02l5" 
-              target="_blank" 
-              rel="noreferrer"
-              role="listitem">
-              <div class="video-thumb">
-                <img src="https://i.ytimg.com/vi/KHs_smswsqE/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBmF1P-pnkl6AztKPXHZFKZ56MxdQ" 
-                    alt="Teaching series thumbnail">
-                <div class="play-button"></div>
-              </div>
-              <h3 class="serif">Faith</h3>
-            </a>
-            <a class="video-card" 
-              href="https://www.youtube.com/watch?v=fyrK7Hpr4EY&list=PLFmEy7TqxiJxcHhaQMxZaLSOQAfFxgTz-" 
-              target="_blank" 
-              rel="noreferrer"
-              role="listitem">
-              <div class="video-thumb">
-                <img src="https://i.ytimg.com/vi/fyrK7Hpr4EY/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA3OOj6K9Xwp62QVlhqxLSFBhbmJQ" 
-                    alt="Live replay thumbnail">
-                <div class="play-button"></div>
-              </div>
-              <h3 class="serif">Love</h3>
-            </a>
-          </div> -->
 
         <div style="margin-top: 16px; display:flex; gap: 12px; flex-wrap: wrap;">
           <a class="btn btn-primary" href="https://www.youtube.com/@ChristGenerationMinistry-g4i" target="_blank" rel="noreferrer">
