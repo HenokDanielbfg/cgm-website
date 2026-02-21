@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="ti">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Christ Generation Ministry (CGM)</title>
-  <meta name="description" content="Christ Generation Ministry — raising a generation that reflects the glory of Christ." />
+  <title>ኣገልግሎት ወለዶ ክርስቶስ (CGM)</title>
+  <meta name="description" content="ኣገልግሎት ወለዶ ክርስቶስ — ክብርታ ክርስቶስ ዘንጸባርቕ ወለዶ ምምስራት።" />
 
   <style>
     :root{
@@ -595,9 +595,8 @@
   </style>
 </head>
 
-<!-- script to load devotionals -->
 <script>
-fetch("devotional.json")
+fetch("devotional_tig.json")
   .then(response => response.json())
   .then(data => {
     document.getElementById("dev-verse").textContent = data.verse;
@@ -609,7 +608,6 @@ fetch("devotional.json")
   });
 </script>
 
-<!--  script to load articles -->
 <script>
   function escapeHtml(s){
     return String(s ?? "").replace(/[&<>"']/g, m => ({
@@ -623,20 +621,20 @@ fetch("devotional.json")
     return d.toLocaleDateString(undefined, { year:"numeric", month:"short", day:"2-digit" });
   }
 
-  fetch("articles.json")
+  fetch("articles_tig.json")
     .then(r => r.json())
     .then(items => {
       items.sort((a,b) => (b.date || "").localeCompare(a.date || ""));
       const row = document.getElementById("articlesRow");
 
       row.innerHTML = items.map(a => `
-        <a class="article-card" href="article.html?id=${encodeURIComponent(a.id)}">
+        <a class="article-card" href="article_tig.html?id=${encodeURIComponent(a.id)}">
           <div class="article-tag">${escapeHtml(a.tag || "Article")}</div>
           <h3 class="serif">${escapeHtml(a.title || "Untitled")}</h3>
           <p>${escapeHtml(a.excerpt || "")}</p>
           <div class="article-date">${a.date ? formatDate(a.date) : ""}</div>
           <div style="margin-top:12px;">
-            <span class="btn btn-outline" style="pointer-events:none;">Read</span>
+            <span class="btn btn-outline" style="pointer-events:none;">ንምንባብ</span>
           </div>
         </a>
       `).join("");
@@ -644,9 +642,8 @@ fetch("devotional.json")
     .catch(err => console.error("Articles load error:", err));
 </script>
 
-<!-- script to load teachings -->
 <script>
-  fetch("teachings.json")
+  fetch("teachings_tig.json")
     .then(r => r.json())
     .then(items => {
       const row = document.getElementById("teachingsRow");
@@ -663,7 +660,7 @@ fetch("devotional.json")
           </div>
           <h3 class="serif">${escapeHtml(t.title || "Untitled")}</h3>
           <p>${escapeHtml(t.excerpt || "")}</p>
-          <a class="btn btn-outline" href="${escapeHtml(t.video)}" target="_blank" rel="noreferrer" aria-label="Watch ${escapeHtml(t.title)}">Watch Now</a>
+          <a class="btn btn-outline" href="${escapeHtml(t.video)}" target="_blank" rel="noreferrer" aria-label="Watch ${escapeHtml(t.title)}">ንምርኣይ</a>
         </article>
       `).join("");
     })
@@ -671,25 +668,21 @@ fetch("devotional.json")
 </script>
 
 <body>
-  <!-- Top Bar -->
   <header class="topbar" role="banner">
     <div class="wrap topbar-inner">
       <a class="brand" href="#top" aria-label="Go to top">
-        <!-- <span class="mark" aria-hidden="true"></span> -->
-         <img class="logo" src="logo.png" alt="CGM logo" />
-        <span><strong>CGM</strong> <span style="color:var(--gold2)">•</span> Christ Generation Ministry</span>
+        <img class="logo" src="logo.png" alt="CGM logo" />
+        <span><strong>CGM</strong> <span style="color:var(--gold2)">•</span> ኣገልግሎት ወለዶ ክርስቶስ</span>
       </a>
 
       <nav aria-label="Primary">
         <ul>
-          <li><a href="#mission">Mission</a></li>
-          <li><a href="#teaching">Teaching</a></li>
-          <li><a href="#articles">Articles</a></li>
-          <!-- <li><a href="#wednesday">Service</a></li> -->
-          <!-- <li><a href="#thursday">Live</a></li> -->
-          <li><a href="#devotionals">Devotionals</a></li>
-          <li><a href="#testimonies">Testimonies</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#mission">ተልእኾ</a></li>
+          <li><a href="#teaching">ትምህርቲ</a></li>
+          <li><a href="#articles">ጽሑፋት</a></li>
+          <li><a href="#devotionals">መንፈሳዊ መግቢ</a></li>
+          <li><a href="#testimonies">ምስክርነታት</a></li>
+          <li><a href="#contact">ርክብ</a></li>
         </ul>
       </nav>
 
@@ -732,8 +725,8 @@ fetch("devotional.json")
       }
 
       btn.addEventListener("click", function(){
-        applyLang(lang === "en" ? "ti" : "en");
-        window.location.href = "index_tig.html";
+        applyLang(lang === "ti" ? "en" : "ti");
+        window.location.href = "index.html";
       });
 
       btn.addEventListener("mouseenter", function(){
@@ -749,34 +742,32 @@ fetch("devotional.json")
     })();
   </script>
 
-  <!-- HERO -->
   <main id="top">
     <section class="hero" aria-label="Top section">
       <div class="wrap hero-grid">
         <div>
           <div class="kicker">
             <span class="dot" aria-hidden="true"></span>
-            <span>Faith • Fellowship • Growth</span>
+            <span>እምነት • ሕብረት • ዕቤት</span>
           </div>
 
           <h1 class="title serif">
-            <span class="gold">Christ Generation Ministry</span>
+            <span class="gold">ኣገልግሎት ወለዶ ክርስቶስ</span>
           </h1>
 
           <p class="subtitle">
-            Raising a generation that reflects the glory of Christ, grounded in the Word,
-            strengthened by prayer, and united in fellowship.
+            ክብርታ ክርስቶስ ዘንጸባርቕ፣ ኣብ ቃል ኣምላኽ ዝተሰረተ፣ ብጸሎት ዝተበርትዐን ብሕብረት ዝተጠርነፈን ወለዶ ምምስራት።
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#mission" aria-label="Go to Mission section">Our Mission</a>
-            <a class="btn btn-outline" href="#teaching" aria-label="Go to Teaching section">Watch Teaching</a>
-            <a class="btn btn-ghost" href="#contact" aria-label="Go to Contact section">Contact Us</a>
+            <a class="btn btn-primary" href="#mission" aria-label="Go to Mission section">ተልእኾና</a>
+            <a class="btn btn-outline" href="#teaching" aria-label="Go to Teaching section">ትምህርቲ ርአ</a>
+            <a class="btn btn-ghost" href="#contact" aria-label="Go to Contact section">ተወከሱና</a>
           </div>
 
           <div class="divider" aria-hidden="true"></div>
           <p style="margin-top:14px;color:#d9d2c0;">
-            We invite you to discover your place in our community, where faith and fellowship come together to inspire growth.
+            እምነትን ሕብረትን ንዕቤት ኣብ ዝተኣሳሰሩሉ ሕብረትና ቦታኹም ክትረኽቡ ንዕድመኩም።
           </p>
         </div>
 
@@ -784,19 +775,19 @@ fetch("devotional.json")
           <div class="gold-lines" aria-hidden="true"></div>
           <div class="hero-card-content">
             <div class="stat">
-              <b>In-person Gathering</b>
-              <span>Wednesdays • 7:30 PM – 10:30 PM</span>
+              <b>ብኣካል ዝግበር ኣኼባ</b>
+              <span>ረቡዕ • 7:30 ድ.ቀ – 10:30 ድ.ቀ</span>
             </div>
             <div class="stat">
-              <b>Online Live Service</b>
-              <span>Thursdays • 11:00 PM – 1:30 AM</span>
+              <b>ናይ ኢንተርነት ቀጥታዊ ኣገልግሎት</b>
+              <span>ሓሙስ • 11:00 ድ.ቀ – 1:30 ድ.ለ</span>
             </div>
             <div class="stat">
-              <b>Teaching Videos</b>
-              <span>YouTube • New messages & streams</span>
+              <b>ናይ ትምህርቲ ቪድዮታት</b>
+              <span>YouTube • ሓደስቲ መልእኽትታትን ቀጥታዊ ፈነወታትን</span>
             </div>
             <a class="btn btn-outline" href="https://www.youtube.com/@ChristGenerationMinistry-g4i" target="_blank" rel="noreferrer">
-              Visit YouTube Channel
+              ናይ YouTube ቻነል በጽሑ
               <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -804,30 +795,26 @@ fetch("devotional.json")
       </div>
     </section>
 
-    <!-- MISSION -->
     <section id="mission" aria-label="Mission section">
       <div class="wrap">
-        <div class="pill">Our Mission</div>
-        <h2 class="serif">Empowering the Next Generation for a Brighter Future</h2>
+        <div class="pill">ተልእኾና</div>
+        <h2 class="serif">ነቲ ዝቕጽል ወለዶ ንብሩህ መጻኢ ምብቃዕ</h2>
         <p style="max-width: 78ch;">
-          We are dedicated to empowering this generation to live out the fullness of Christ in every aspect of their lives. 
-          Our mission is to equip this generation to become the perfect expression of Jesus Christ through powerful teachings, 
-          inspirational messages, and practical guidance rooted in God's Word. Join us as we grow in faith, purpose, and the love of Christ, 
-          making a lasting impact on the world around us.
+          እዚ ወለዶ እዚ ኣብ ኩሉ መዳያት ህይወቱ ምልኣት ክርስቶስ ንክነብር ንምብቃዕ ንሰርሕ ኣለና። ተልእኾና እዚ ወለዶ እዚ ብሓያል ትምህርትታት፣ ብመንፈስ ዝተደፋፈኡ መልእኽትታትን ኣብ ቃል ኣምላኽ ዝተሰረተ ተግባራዊ መምርሕን ኣቢሉ ፍጹም መግለጺ የሱስ ክርስቶስ ንክኸውን ምዕጣቕ እዩ። ብእምነት፣ ዕላማን ፍቕሪ ክርስቶስን እናዓበና፡ ኣብ ዙርያና ዘሎ ዓለም ነባሪ ጽልዋ ንምሕዳግ ምሳና ሕበሩ።
         </p>
 
         <div class="grid-3">
           <div class="card">
-            <h3 class="serif">Word-Centered Teaching</h3>
-            <p>Sound doctrine and practical guidance rooted in Scripture for everyday life.</p>
+            <h3 class="serif">ኣብ ቃል ዝተሰረተ ትምህርቲ</h3>
+            <p>ንመዓልታዊ ህይወት ዝኸውን ቅኑዕ ትምህርትን ኣብ ቅዱስ መጽሓፍ ዝተሰረተ ተግባራዊ መምርሕን።</p>
           </div>
           <div class="card">
-            <h3 class="serif">Prayer & Worship</h3>
-            <p>A sacred space to seek God, grow in intimacy, and encounter His presence.</p>
+            <h3 class="serif">ጸሎትን ኣምልኾን</h3>
+            <p>ንኣምላኽ ንምድላይ፣ ኣብ ጥርናፈ ንምዕባይን ምስ ህላወኡ ንምርኻብን ዝኸውን ቅዱስ ቦታ።</p>
           </div>
           <div class="card">
-            <h3 class="serif">Community & Discipleship</h3>
-            <p>Belonging, accountability, and mentorship that strengthens spiritual maturity.</p>
+            <h3 class="serif">ሕብረትን ደቀ-መዛሙርትን</h3>
+            <p>ንመንፈሳዊ ብስለት ዘጠናኽር ናይ ምጽንባር ስምዒት፡ ተሓታትነትን ምኽርን።</p>
           </div>
         </div>
 
@@ -835,28 +822,22 @@ fetch("devotional.json")
       </div>
     </section>
 
-    <!-- TEACHING / YOUTUBE -->
     <section id="teaching" aria-label="YouTube teaching videos section">
       <div class="wrap">
-        <div class="pill">Teaching</div>
-        <h2 class="serif">Grow deeper through Spirit-led teaching</h2>
+        <div class="pill">ትምህርቲ</div>
+        <h2 class="serif">ብመንፈስ ቅዱስ ብዝምራሕ ትምህርቲ ብዕምቆት ዕበዩ</h2>
         <p style="max-width: 78ch;">
-          Watch powerful teachings designed to strengthen your faith
-          and help you walk confidently in Christ.
+          እምነትኩም ንምጥንኻርን ብክርስቶስ ብምትእምማን ንክትመላለሱ ንምሕጋዝን ዝተዳለዉ ሓያላን ትምህርትታት ተኸታተሉ።
         </p>
 
         <div class="teachings-row" id="teachingsRow" role="list" aria-label="Latest from our channel">
-          <!-- JS injects teaching cards here -->
-        </div>
+          </div>
 
         <div style="margin-top: 16px; display:flex; gap: 12px; flex-wrap: wrap;">
           <a class="btn btn-primary" href="https://www.youtube.com/@ChristGenerationMinistry-g4i" target="_blank" rel="noreferrer">
-            Visit Our YouTube Channel ↗
+            ናይ ዩትዩብ ቻነልና በጽሑ ↗
           </a>
-          <!-- <a class="btn btn-ghost" href="https://www.youtube.com/@ChristGenerationMinistry-g4i/streams" target="_blank" rel="noreferrer">
-            See Previous Lives ↗
-          </a> -->
-        </div>
+          </div>
 
         <div class="divider" aria-hidden="true"></div>
       </div>
@@ -864,50 +845,48 @@ fetch("devotional.json")
 
     <section id="articles" aria-label="Articles section">
       <div class="wrap">
-        <div class="pill">Articles</div>
-        <h2 class="serif">Topical Messages</h2>
+        <div class="pill">ጽሑፋት</div>
+        <h2 class="serif">እዋናዊ መልእኽትታት</h2>
         <p style="max-width: 78ch;">
-          Teachings, reflections, and guidance written for your walk with Christ.
+          ምስ ክርስቶስ ንዘለኩም ምምልላስ ዝተጻሕፉ ትምህርትታት፣ ምስትንታናትን መምርሒታትን።
         </p>
 
         <div class="articles-row" id="articlesRow" aria-label="Articles list">
-          <!-- JS injects article cards here -->
-        </div>
+          </div>
 
         <div class="divider" aria-hidden="true"></div>
       </div>
     </section>
 
-    <!-- WEDNESDAY SERVICE -->
     <section id="wednesday" aria-label="Wednesday service details section">
       <div class="wrap">
-        <div class="pill">In-Person Service</div>
-        <h2 class="serif">Wednesday Worship Gathering</h2>
+        <div class="pill">ብኣካል ዝግበር ኣገልግሎት</div>
+        <h2 class="serif">ናይ ረቡዕ ናይ ኣምልኾ ኣኼባ</h2>
         <p style="max-width: 78ch;">
-          A sacred evening of worship, prayer, and the teaching of the Word. Come expecting transformation.
+          ናይ ኣምልኾ፣ ጸሎትን ትምህርቲ ቃል ኣምላኽን ቅዱስ ምሸት። ለውጢ ተጸቢኹም ንዑ።
         </p>
 
         <div class="grid-2">
           <div class="card">
-            <h3 class="serif">Service Details</h3>
+            <h3 class="serif">ዝርዝር ኣገልግሎት</h3>
             <div class="meta">
-              <span class="pill">🕊 Every Wednesday</span>
-              <span class="pill">⏰ 7:30 PM – 10:30 PM</span>
-              <span class="pill">📍 Al Maseed Building 501</span>
+              <span class="pill">🕊 ኩሉ ረቡዕ</span>
+              <span class="pill">⏰ 7:30 ድ.ቀ – 10:30 ድ.ቀ</span>
+              <span class="pill">📍 ኣል መሲድ ህንጻ 501</span>
             </div>
-            <p>Join us for a time dedicated to prayer, heartfelt worship, and the teaching of the Word.</p>
-            <a class="btn btn-outline" href="https://www.google.com/maps?q=place_id:ChIJW67SuDVDXz4R5mrVEAjaRDA" target="_blank" rel="noreferrer">Directions</a>
+            <p>ንጸሎት፣ ካብ ልቢ ንዝመነጨ ኣምልኾን ንትምህርቲ ቃል ኣምላኽን ኣብ ዝተወፈየ ግዜ ምሳና ሕበሩ።</p>
+            <a class="btn btn-outline" href="https://www.google.com/maps?q=place_id:ChIJW67SuDVDXz4R5mrVEAjaRDA" target="_blank" rel="noreferrer">ኣንፈት መገዲ</a>
           </div>
 
           <div class="card">
-            <h3 class="serif">What to Expect</h3>
+            <h3 class="serif">እንታይ ይጽበየኩም</h3>
             <p>
-              • Warm welcome and fellowship<br/>
-              • Extended worship and prayer<br/>
-              • Bible-centered teaching<br/>
-              • Time to connect after service
+              • ውዑይ ኣቀባብላን ሕብረትን<br/>
+              • ሰፊሕ ናይ ኣምልኾን ጸሎትን ግዜ<br/>
+              • ኣብ መጽሓፍ ቅዱስ ዝተሰረተ ትምህርቲ<br/>
+              • ድሕሪ ኣገልግሎት ዝግበር ናይ ሕብረት ግዜ
             </p>
-            <a class="btn btn-ghost" href="#testimonies">Read Testimonies</a>
+            <a class="btn btn-ghost" href="#testimonies">ምስክርነታት ኣንብቡ</a>
           </div>
         </div>
 
@@ -915,41 +894,40 @@ fetch("devotional.json")
       </div>
     </section>
 
-    <!-- THURSDAY LIVE -->
     <section id="thursday" aria-label="Thursday live online service section">
       <div class="wrap">
-        <div class="pill">Online Service</div>
-        <h2 class="serif">Thursday Live Service</h2>
+        <div class="pill">ናይ ኢንተርነት ኣገልግሎት</div>
+        <h2 class="serif">ናይ ሓሙስ ቀጥታዊ ኣገልግሎት</h2>
         <p style="max-width: 78ch;">
-          Connecting digitally is a vital part of our outreach. Join us online as we worship and grow together.
+          ብዲጂታል መገዲ ምርኻብ ኣገዳሲ ክፋል ኣገልግሎትና እዩ። ብሓባር ከነምልኽን ክንዓብይን ብኢንተርነት ምሳና ሕበሩ።
         </p>
         <div class="grid-2">
           <div class="card" style="background: linear-gradient(180deg, rgba(212,175,55,.12), rgba(10,12,18,.92));">
-            <h3 class="serif">Live Details</h3>
+            <h3 class="serif">ዝርዝር ቀጥታዊ ፈነወ</h3>
             <div class="meta">
-              <span class="pill">📡 Every Thursday</span>
-              <span class="pill">⏰ 11:00 PM – 1:30 AM</span>
-              <span class="pill">📺 YouTube & TikTok Live</span>
+              <span class="pill">📡 ኩሉ ሓሙስ</span>
+              <span class="pill">⏰ 11:00 ድ.ቀ – 1:30 ድ.ለ</span>
+              <span class="pill">📺 ቀጥታዊ ፈነወ YouTubeን TikTokን</span>
             </div>
-            <p>Gather virtually to pray, and receive the Word.</p>
+            <p>ብቨርቹዋል ተኣኪብኩም ጸልዩን ቃል ኣምላኽ ተቐበሉን።</p>
             <div style="display:flex; gap: 12px; flex-wrap: wrap;">
               <a class="btn btn-primary" href="https://www.youtube.com/@ChristGenerationMinistry-g4i/streams" target="_blank" rel="noreferrer">
-                Watch Previous Lives ↗
+                ዝሓለፉ ቀጥታዊ ፈነወታት ርኣዩ ↗
               </a>
               <a class="btn btn-outline" href="https://www.youtube.com/@ChristGenerationMinistry-g4i" target="_blank" rel="noreferrer">
-                YouTube Channel ↗
+                ናይ YouTube ቻነል ↗
               </a>
             </div>
           </div>
 
           <div class="card">
-            <h3 class="serif">How to Join</h3>
+            <h3 class="serif">ከመይ ጌርና ንጽንበር</h3>
             <p>
-              • Subscribe to the channel and enable notifications<br/>
-              • Share the live with friends and family<br/>
-              • Participate in chat and prayer requests
+              • ነቲ ቻነል ሳብስክራይብ ብምግባር ምልክት ደወል ኣብርሁ<br/>
+              • ነቲ ቀጥታዊ ፈነወ ምስ ኣዕሩኽትኹምን ስድራቤትኩምን ኣካፍሉ<br/>
+              • ኣብ ዕላልን ሕቶ ጸሎትን ተሳተፉ
             </p>
-            <a class="btn btn-ghost" href="#contact">Send a Prayer Request</a>
+            <a class="btn btn-ghost" href="#contact">ሕቶ ጸሎት ስደዱ</a>
           </div>
         </div>
 
@@ -957,105 +935,86 @@ fetch("devotional.json")
       </div>
     </section>
 
-    <!-- DEVOTIONALS -->
     <section id="devotionals" aria-label="Daily devotionals section">
       <div class="wrap">
-        <div class="pill">Devotionals</div>
-        <h2 class="serif">Strengthened in Christ</h2>
+        <div class="pill">መንፈሳዊ መግቢ</div>
+        <h2 class="serif">ብክርስቶስ ምብራኽ</h2>
         <p style="max-width: 78ch;">
-          Short encouragements designed to build consistency in Scripture, reflection, and prayer.
+          ኣብ ቅዱሳት ጽሑፋት፣ ምስትንታንን ጸሎትን ቀጻልነት ንምህናጽ ዝተዳለዉ ሓጸርቲ ናይ ምትብባዕ መልእኽትታት።
         </p>
 
-        <!-- <div class="grid-3">
-          <div class="card">
-            <h3 class="serif">Scripture of the Day</h3>
-            <p>Feature a daily verse</p>
-          </div>
-          <div class="card">
-            <h3 class="serif">Reflection</h3>
-            <p>A short insight to apply the Word to real life—simple, practical, and uplifting.</p>
-          </div>
-          <div class="card">
-            <h3 class="serif">Prayer Focus</h3>
-            <p>One focused prayer point to align your heart with God’s purpose for the day.</p>
-          </div>
-        </div> -->
         <div class="grid-3">
           <div class="card">
-            <h3 class="serif">Scripture of the Day</h3>
-            <p id="dev-verse">Loading verse...</p>
+            <h3 class="serif">ናይ ዕለቱ ጥቕሲ</h3>
+            <p id="dev-verse">ጥቕሲ ይጽዓን ኣሎ...</p>
           </div>
 
           <div class="card">
-            <h3 class="serif">Reflection</h3>
-            <p id="dev-reflection">Loading reflection...</p>
+            <h3 class="serif">ምስትንታን</h3>
+            <p id="dev-reflection">ምስትንታን ይጽዓን ኣሎ...</p>
           </div>
 
           <div class="card">
-            <h3 class="serif">Prayer Focus</h3>
-            <p id="dev-prayer">Loading prayer...</p>
+            <h3 class="serif">ናይ ጸሎት ትኹረት</h3>
+            <p id="dev-prayer">ጸሎት ይጽዓን ኣሎ...</p>
           </div>
         </div>
 
         <div style="margin-top: 16px; display:flex; gap: 12px; flex-wrap: wrap;">
-          <!-- <a class="btn btn-primary" href="#contact">Subscribe for Daily Devotions</a> -->
-          <!-- <a class="btn btn-outline" href="#" aria-label="Read devotionals (add link)">Read Today’s Devotional</a> -->
-        </div>
+          </div>
 
         <div class="divider" aria-hidden="true"></div>
       </div>
     </section>
 
-    <!-- TESTIMONIES -->
     <section id="testimonies" aria-label="Testimonies section">
       <div class="wrap">
-        <div class="pill">Testimonies</div>
-        <h2 class="serif">Testimonies of Transformation</h2>
+        <div class="pill">ምስክርነታት</div>
+        <h2 class="serif">ናይ ለውጢ ምስክርነታት</h2>
         <p style="max-width: 78ch;">
-          God is moving. Here are stories of lives strengthened, restored, and renewed through faith and community.
+          ኣምላኽ ይሰርሕ ኣሎ። ብእምነትን ሕብረትን ዝበረቱ፣ ዝተመልሱን ዝተሓደሱን ህይወታት ታሪኽ ኣብዚ ኣሎ።
         </p>
 
         <div class="grid-2">
           <blockquote>
             <p>
-              Through CGM, I rediscovered my purpose and deepened my faith. The teaching and worship changed my spiritual life.
+              ብኣቢሉ CGM፣ ዕላማ ህይወተይ ረኺበዮን እምነተይ ኣዕሚቐዮን። እቲ ትምህርትን ኣምልኾን ንመንፈሳዊ ህይወተይ ቀይርዎ እዩ።
             </p>
-            <footer>— Member</footer>
+            <footer>— ኣባል</footer>
           </blockquote>
 
           <blockquote>
             <p>
-              Every gathering leaves me spiritually renewed. The community feels like family, and the Word is always timely.
+              ኩሉ ግዜ ኣብ ኣኼባ ክርከብ ከለኹ ብመንፈስ እሕደስ። እቲ ሕብረት ከም ስድራቤት እዩ፣ እቲ ቃል ድማ ኩሉ ግዜ ኣብ እዋኑ ዝመጽእ እዩ።
             </p>
-            <footer>— Attendee</footer>
+            <footer>— ተሳታፊ</footer>
           </blockquote>
         </div>
 
         <div style="margin-top: 16px;">
-          <a class="btn btn-outline" href="#contact">Share Your Testimony</a>
+          <a class="btn btn-outline" href="#contact">ምስክርነትኩም ኣካፍሉ</a>
         </div>
 
         <div class="divider" aria-hidden="true"></div>
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" aria-label="Contact us section">
       <div class="wrap">
-        <div class="pill">Contact Us</div>
-        <h2 class="serif">Connect with our community</h2>
+        <div class="pill">ርክብ</div>
+        <h2 class="serif">ምስ ሕብረተሰብና ተራኸቡ</h2>
         <p style="max-width: 78ch;">
-          We’d love to hear from you—whether you have a question, need prayer, or want to get involved.
+          ሕቶ ይሃሉኹም፣ ጸሎት ትደልዩ ወይ ክትሳተፉ ትደልዩ፡ ካባኹም ክንሰምዕ ደስ ይበለና።
         </p>
 
         <div class="contact-grid">
           <div class="card">
-            <h3 class="serif">Get in Touch</h3>
+            <h3 class="serif">ተወከሱና</h3>
 
             <div class="contact-item" style="margin-top: 14px;">
               <div class="icon" aria-hidden="true">☎</div>
               <div>
-                <div style="color:#e3dece; font-weight:650;">Phone</div>
+                <div style="color:#e3dece; font-weight:650;">ቴሌፎን</div>
                 <a href="tel:+971566183870" aria-label="Call +971 56 618 3870">+971 56 618 3870</a>
               </div>
             </div>
@@ -1063,7 +1022,7 @@ fetch("devotional.json")
             <div class="contact-item" style="margin-top: 12px;">
               <div class="icon" aria-hidden="true">✉</div>
               <div>
-                <div style="color:#e3dece; font-weight:650;">Email</div>
+                <div style="color:#e3dece; font-weight:650;">ኢመይል</div>
                 <a href="mailto:CGministries24@gmail.com" aria-label="Email hello at CGministries24@gmail dot com">CGministries24@gmail.com</a>
                 <div style="color:var(--muted); font-size: 13px; margin-top: 4px;">
                 </div>
@@ -1077,7 +1036,7 @@ fetch("devotional.json")
                 </svg>
               </div>
               <div>
-                <div style="color:#e3dece; font-weight:650;">WhatsApp</div>
+                <div style="color:#e3dece; font-weight:650;">ዋትስኣፕ</div>
                 <a href="https://wa.me/971566183870" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">+971 56 618 3870</a>
               </div>
             </div>
@@ -1089,7 +1048,7 @@ fetch("devotional.json")
                 </svg>
               </div>
               <div>
-                <div style="color:#e3dece; font-weight:650;">Instagram</div>
+                <div style="color:#e3dece; font-weight:650;">ኢንስታግራም</div>
                 <a href="https://www.instagram.com/christ_generation_ministry/" target="_blank" rel="noreferrer" aria-label="Follow us on Instagram">@christ_generation_ministry</a>
               </div>
             </div>
@@ -1101,49 +1060,18 @@ fetch("devotional.json")
                 </svg>
               </div>
               <div>
-                <div style="color:#e3dece; font-weight:650;">TikTok</div>
+                <div style="color:#e3dece; font-weight:650;">ቲክቶክ</div>
                 <a href="https://www.tiktok.com/@christ_generation.min" target="_blank" rel="noreferrer" aria-label="Follow us on TikTok">@christ_generation.min</a>
               </div>
             </div>
 
             <div style="margin-top: 14px; display:flex; gap: 12px; flex-wrap: wrap;">
-              <a class="btn btn-primary" href="mailto:CGministries24@gmail.com?subject=CGM%20Inquiry">Send Email</a>
-              <a class="btn btn-ghost" href="tel:+971566183870">Call Now</a>
+              <a class="btn btn-primary" href="mailto:CGministries24@gmail.com?subject=CGM%20Inquiry">ኢመይል ስደዱ</a>
+              <a class="btn btn-ghost" href="tel:+971566183870">ሕጂ ደውሉ</a>
             </div>
           </div>
 
-          <!-- <div class="card">
-            <h3 class="serif">Prayer Request / Message</h3>
-            <p>Use this simple form (connect it to your backend later, or use a form service).</p>
-
-            <form action="#" method="post" aria-label="Contact form">
-              <label class="sr-only" for="name">Name</label>
-              <input id="name" name="name" placeholder="Your name"
-                     style="width:100%; padding:12px 14px; border-radius: 14px; border:1px solid rgba(212,175,55,.22); background: rgba(0,0,0,.22); color: var(--text); outline:none;"
-                     />
-
-              <div style="height:10px;"></div>
-
-              <label class="sr-only" for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="Your email"
-                     style="width:100%; padding:12px 14px; border-radius: 14px; border:1px solid rgba(212,175,55,.22); background: rgba(0,0,0,.22); color: var(--text); outline:none;"
-                     />
-
-              <div style="height:10px;"></div>
-
-              <label class="sr-only" for="msg">Message</label>
-              <textarea id="msg" name="message" rows="5" placeholder="Write your message or prayer request..."
-                        style="width:100%; padding:12px 14px; border-radius: 14px; border:1px solid rgba(212,175,55,.22); background: rgba(0,0,0,.22); color: var(--text); outline:none; resize: vertical;"></textarea>
-
-              <div style="height:12px;"></div>
-
-              <button class="btn btn-outline" type="button"
-                      onclick="alert('This demo form is not connected yet. Hook it to your backend or a form service.');">
-                Submit (demo)
-              </button>
-            </form>
-          </div> -->
-        </div>
+          </div>
       </div>
     </section>
 
@@ -1152,10 +1080,10 @@ fetch("devotional.json")
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-inner">
       <div>
-        <span class="serif" style="color:var(--gold2); font-weight:700;">Christ Generation Ministry</span>
+        <span class="serif" style="color:var(--gold2); font-weight:700;">ኣገልግሎት ወለዶ ክርስቶስ</span>
         <span style="color:var(--muted);"> • CGM</span>
       </div>
-      <div>© <span id="year"></span> All Rights Reserved</div>
+      <div>© <span id="year"></span> ኩሉ መሰል ዝተሓለወ እዩ</div>
     </div>
   </footer>
 
