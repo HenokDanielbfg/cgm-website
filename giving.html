@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Give — Christ Generation Ministry</title>
+  <meta name="description" content="Support Christ Generation Ministry through partnership, tithes, or sowing a seed." />
+
+  <style>
+    :root{
+      --bg: #0b0c0f;
+      --panel: #0f1118;
+      --panel2: #0c0f14;
+      --text: #f3f0e6;
+      --muted: #c9c3b1;
+      --gold: #d4af37;
+      --gold2: #e8d9a8;
+      --gold3: #b88a1a;
+      --border: rgba(212,175,55,.28);
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 22px;
+      --max: 1400px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(212,175,55,.09), transparent 55%),
+        radial-gradient(850px 520px at 100% 10%, rgba(232,217,168,.06), transparent 55%),
+        linear-gradient(180deg, #07080b 0%, var(--bg) 30%, #07080b 100%);
+      font: 18px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      letter-spacing: .2px;
+    }
+    .serif{
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      letter-spacing: .3px;
+    }
+    h1,h2,h3{ margin:0 0 10px 0; line-height: 1.15; }
+    h1{ font-size: clamp(40px, 5.5vw, 64px); }
+    h2{ font-size: clamp(30px, 3.5vw, 40px); }
+    h3{ font-size: clamp(20px, 2.5vw, 25px); }
+    p{ margin: 0 0 14px 0; color: var(--muted); }
+
+    .wrap{
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+    section{ padding: 84px 0; position: relative; }
+
+    /* Top nav */
+    .topbar{
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 9, 12, .65);
+      border-bottom: 1px solid rgba(212,175,55,.18);
+    }
+    .topbar-inner{
+      display:flex; align-items:center;
+      justify-content: space-between;
+      gap: 18px; padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+      text-decoration:none; color: var(--text); white-space: nowrap;
+    }
+    .logo{
+      width: 34px; height: 34px; border-radius: 11px;
+      object-fit: cover;
+      border: 1px solid rgba(232,217,168,.35);
+      box-shadow: 0 10px 30px rgba(212,175,55,.18);
+      background: rgba(0,0,0,.2);
+    }
+    .brand strong{ font-weight: 700; }
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap: 14px; flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a{
+      color: var(--muted); text-decoration:none;
+      font-size: 16px; padding: 8px 10px;
+      border-radius: 12px; border: 1px solid transparent;
+    }
+    nav a:hover{
+      color: var(--text);
+      border-color: rgba(212,175,55,.22);
+      background: rgba(212,175,55,.06);
+    }
+
+    /* Hamburger */
+    .hamburger{
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      padding: 6px;
+      border-radius: 10px;
+      border: 1px solid rgba(212,175,55,.28);
+      background: rgba(212,175,55,.06);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .hamburger span{
+      display: block;
+      width: 100%; height: 2px;
+      background: var(--gold2);
+      border-radius: 2px;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .hamburger.active span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity: 0; }
+    .hamburger.active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap: 10px; padding: 12px 16px; border-radius: 14px;
+      font-weight: 650; letter-spacing: .2px; text-decoration:none;
+      border: 1px solid rgba(212,175,55,.30); cursor: pointer;
+      user-select: none; font-size: 16px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn-primary{
+      background: linear-gradient(135deg, rgba(212,175,55,.92), rgba(184,138,26,.78));
+      color: #121212;
+      border-color: rgba(232,217,168,.55);
+      box-shadow: 0 16px 40px rgba(212,175,55,.14);
+    }
+    .btn-ghost{
+      background: rgba(212,175,55,.06);
+      color: var(--text);
+    }
+    .btn-outline{
+      background: transparent; color: var(--gold2);
+    }
+    .btn-outline:hover{ background: rgba(212,175,55,.08); }
+
+    /* Cards + grids */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px; margin-top: 18px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(15,17,24,.92), rgba(10,12,18,.92));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px; position: relative; overflow:hidden;
+    }
+    .card::before{
+      content:""; position:absolute; inset:-1px;
+      border-radius: inherit;
+      background: radial-gradient(420px 140px at 15% 0%, rgba(212,175,55,.16), transparent 55%);
+      opacity:.8; pointer-events:none;
+    }
+    .card > *{ position: relative; }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.20);
+      background: rgba(212,175,55,.06);
+      color: var(--gold2); font-size: 16px; white-space: nowrap;
+    }
+    .divider{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.35), transparent);
+      margin: 18px 0 0;
+    }
+
+    /* Giving-specific */
+    .giving-hero{
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .giving-hero h1 .gold{
+      background: linear-gradient(90deg, var(--gold2), var(--gold), var(--gold3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .giving-hero p{
+      max-width: 60ch;
+      margin: 14px auto 0;
+      font-size: clamp(18px, 2.2vw, 20px);
+      color: #ded7c6;
+    }
+    .scripture{
+      text-align: center;
+      font-style: italic;
+      color: var(--gold2);
+      font-size: 17px;
+      margin: 24px auto 0;
+      max-width: 56ch;
+    }
+
+    .giving-card-icon{
+      width: 48px; height: 48px;
+      border-radius: 16px;
+      border: 1px solid rgba(232,217,168,.30);
+      background: linear-gradient(135deg, rgba(212,175,55,.35), rgba(0,0,0,.2));
+      display:flex; align-items:center; justify-content:center;
+      font-size: 22px;
+      box-shadow: 0 12px 30px rgba(212,175,55,.10);
+      margin-bottom: 14px;
+    }
+    .giving-card p{
+      font-size: 16px;
+    }
+
+    /* Payment section */
+    .payment-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .bank-detail{
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(212,175,55,.12);
+    }
+    .bank-detail:last-child{ border-bottom: none; }
+    .bank-label{
+      color: var(--muted);
+      font-size: 17px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .bank-value{
+      color: var(--gold2);
+      font-weight: 650;
+      font-size: 17px;
+      text-align: right;
+    }
+
+    /* Footer */
+    footer.site-footer{
+      padding: 28px 0 40px;
+      border-top: 1px solid rgba(212,175,55,.18);
+      background: rgba(0,0,0,.22);
+    }
+    .footer-inner{
+      display:flex; justify-content: space-between;
+      align-items:center; gap: 16px; flex-wrap: wrap;
+      color: var(--muted); font-size: 17px;
+    }
+
+    @media (max-width: 980px){
+      .grid-3{ grid-template-columns: 1fr; }
+      .payment-grid{ grid-template-columns: 1fr; }
+      .hamburger{ display: flex; }
+      nav{
+        display: none;
+        position: fixed;
+        top: 63px;
+        left: 0; right: 0;
+        background: rgba(8, 9, 12, .97);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(212,175,55,.18);
+        padding: 12px 24px 18px;
+        z-index: 49;
+      }
+      nav.open{ display: block; }
+      nav ul{
+        flex-direction: column;
+        gap: 4px;
+      }
+      nav a{
+        display: block;
+        padding: 12px 14px;
+        font-size: 17px;
+      }
+    }
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <header class="topbar" role="banner">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="index.html" aria-label="Go to homepage">
+        <img class="logo" src="logo.png" alt="CGM logo" />
+        <span><strong>CGM</strong> <span style="color:var(--gold2)">•</span> Christ Generation Ministry</span>
+      </a>
+
+      <button class="hamburger" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav aria-label="Primary" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#teaching">Teaching</a></li>
+          <li><a href="index.html#articles">Articles</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button id="langToggle" aria-label="Switch language"
+        style="
+          display:inline-flex; align-items:center; gap:6px;
+          padding: 7px 13px;
+          border-radius: 999px;
+          border: 1px solid rgba(212,175,55,.28);
+          background: rgba(212,175,55,.06);
+          color: var(--text);
+          font-size: 17px;
+          font-weight: 600;
+          cursor: pointer;
+          white-space: nowrap;
+          flex-shrink: 0;
+          transition: border-color .12s ease, background .12s ease;
+        "
+      >
+        <span id="lang-en" style="color: var(--gold2);">EN</span>
+        <span style="color: rgba(212,175,55,.35);">|</span>
+        <span id="lang-ti" style="color: var(--muted);">ትግ</span>
+      </button>
+    </div>
+  </header>
+
+  <script>
+    (function(){
+      const btn = document.getElementById("langToggle");
+      const enLabel = document.getElementById("lang-en");
+      const tiLabel = document.getElementById("lang-ti");
+      let lang = localStorage.getItem("cgm-lang") || "en";
+
+      function applyLang(l){
+        lang = l;
+        localStorage.setItem("cgm-lang", l);
+        document.documentElement.lang = l === "ti" ? "ti" : "en";
+        enLabel.style.color = l === "en" ? "var(--gold2)" : "var(--muted)";
+        tiLabel.style.color = l === "ti" ? "var(--gold2)" : "var(--muted)";
+      }
+
+      btn.addEventListener("click", function(){
+        applyLang(lang === "en" ? "ti" : "en");
+        window.location.href = "giving_tig.html";
+      });
+
+      btn.addEventListener("mouseenter", function(){
+        btn.style.borderColor = "rgba(212,175,55,.55)";
+        btn.style.background  = "rgba(212,175,55,.10)";
+      });
+      btn.addEventListener("mouseleave", function(){
+        btn.style.borderColor = "rgba(212,175,55,.28)";
+        btn.style.background  = "rgba(212,175,55,.06)";
+      });
+
+      applyLang(lang);
+    })();
+  </script>
+
+  <script>
+    (function(){
+      const toggle = document.getElementById("menuToggle");
+      const nav = document.getElementById("mainNav");
+      toggle.addEventListener("click", function(){
+        toggle.classList.toggle("active");
+        nav.classList.toggle("open");
+      });
+      nav.addEventListener("click", function(e){
+        if(e.target.tagName === "A"){
+          toggle.classList.remove("active");
+          nav.classList.remove("open");
+        }
+      });
+    })();
+  </script>
+
+  <main>
+    <!-- Hero -->
+    <section class="giving-hero" aria-label="Giving hero">
+      <div class="wrap">
+        <div class="pill">Give</div>
+        <h1 class="serif" style="margin-top: 14px;">
+          <span class="gold">Support the Ministry</span>
+        </h1>
+        <p>
+          Your generosity fuels the mission of Christ Generation Ministry — reaching lives,
+          building community, and advancing the Kingdom of God.
+        </p>
+        <p class="scripture serif">
+          "Each of you should give what you have decided in your heart to give, not reluctantly
+          or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7
+        </p>
+      </div>
+    </section>
+
+    <!-- Giving Types -->
+    <section aria-label="Ways to give">
+      <div class="wrap">
+        <h2 class="serif">Ways to Give</h2>
+        <p style="max-width: 78ch;">
+          Whether you are partnering with us monthly, honouring God with your tithes, or sowing a seed of faith,
+          every gift makes a difference.
+        </p>
+
+        <div class="grid-3">
+          <div class="card giving-card">
+            <div class="giving-card-icon" aria-hidden="true">🤝</div>
+            <h3 class="serif">Partnership</h3>
+            <p>
+              Become a monthly partner and stand with us in reaching this generation.
+              Partners are the backbone of this ministry — your consistent support
+              enables ongoing outreach, teaching, and discipleship.
+            </p>
+          </div>
+
+          <div class="card giving-card">
+            <div class="giving-card-icon" aria-hidden="true">🙏</div>
+            <h3 class="serif">Tithes</h3>
+            <p>
+              Honour the Lord with your firstfruits. Your tithes sustain the day-to-day
+              work of the ministry — from worship gatherings to content creation and
+              community care.
+            </p>
+          </div>
+
+          <div class="card giving-card">
+            <div class="giving-card-icon" aria-hidden="true">🌱</div>
+            <h3 class="serif">Sow a Seed</h3>
+            <p>
+              Plant a one-time seed of faith. Whether big or small, God multiplies
+              what is sown in obedience. Your seed supports special projects,
+              events, and outreach initiatives.
+            </p>
+          </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section aria-label="Payment methods">
+      <div class="wrap">
+        <h2 class="serif">How to Give</h2>
+        <p style="max-width: 78ch;">
+          Choose the method that works best for you. All contributions go directly toward the ministry's mission.
+        </p>
+
+        <div class="payment-grid">
+          <!-- Card Payment -->
+          <div class="card">
+            <div class="giving-card-icon" aria-hidden="true">💳</div>
+            <h3 class="serif">Pay by Card</h3>
+            <p>Give securely using your debit or credit card.</p>
+            <a class="btn btn-primary" href="#" aria-label="Give by card">
+              Give Now
+              <span aria-hidden="true">→</span>
+            </a>
+            <!-- TODO: Replace href="#" with your payment processor link (e.g. Stripe, PayPal, Tithe.ly) -->
+          </div>
+
+          <!-- Bank Transfer -->
+          <div class="card">
+            <div class="giving-card-icon" aria-hidden="true">🏦</div>
+            <h3 class="serif">Bank Transfer</h3>
+            <p>Transfer directly to the ministry's bank account.</p>
+
+            <div style="margin-top: 10px;">
+              <div class="bank-detail">
+                <span class="bank-label">Account Name</span>
+                <span class="bank-value">ACCOUNT_NAME</span>
+              </div>
+              <div class="bank-detail">
+                <span class="bank-label">Bank</span>
+                <span class="bank-value">BANK_NAME</span>
+              </div>
+              <div class="bank-detail">
+                <span class="bank-label">Account Number</span>
+                <span class="bank-value">XXXX-XXXX-XXXX</span>
+              </div>
+              <div class="bank-detail">
+                <span class="bank-label">IBAN</span>
+                <span class="bank-value">AEXX XXXX XXXX XXXX XXXX XXX</span>
+              </div>
+              <div class="bank-detail">
+                <span class="bank-label">SWIFT / BIC</span>
+                <span class="bank-value">XXXXXXXX</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-inner">
+      <div>
+        <span class="serif" style="color:var(--gold2); font-weight:700;">Christ Generation Ministry</span>
+        <span style="color:var(--muted);"> • CGM</span>
+      </div>
+      <div>© <span id="year"></span> All Rights Reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
