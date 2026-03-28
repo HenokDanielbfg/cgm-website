@@ -26,6 +26,7 @@ The site supports two languages via **separate HTML files** — not i18n keys or
 |---------|----------|
 | `index.html` | `index_tig.html` |
 | `article.html` | `article_tig.html` |
+| `giving.html` | `giving_tig.html` |
 | `teachings.json` | `teachings_tig.json` |
 | `articles.json` | `articles_tig.json` |
 | `devotional.json` | `devotional_tig.json` |
@@ -37,6 +38,8 @@ The Tigrinya article Markdown files also live in `articles/` alongside the Engli
 ### Pages
 - `index.html` / `index_tig.html` — Main landing page with all sections: Hero, Mission, Teaching, Articles, Services, Devotionals, Testimonies, Contact
 - `article.html` / `article_tig.html` — Individual article reader; reads `?id=` query param, looks up the article in the corresponding `articles.json` / `articles_tig.json`, then fetches and renders the Markdown file
+- `giving.html` / `giving_tig.html` — Giving/donations page for tithes, partnerships, and seed offerings
+- `admin.html` — CMS admin panel (no Tigrinya variant); uses the GitHub Contents API to add/edit/delete teachings and articles directly in the repo. Requires a GitHub Personal Access Token from a repository collaborator. Not linked from the main site navigation
 
 ### Data Files (JSON)
 Each data file has an English and Tigrinya (`_tig`) variant with identical structure:
