@@ -310,6 +310,7 @@
     <div class="tab-bar">
       <button class="tab-btn active" data-tab="teachings" onclick="switchTab('teachings')">Teachings</button>
       <button class="tab-btn" data-tab="articles" onclick="switchTab('articles')">Articles</button>
+      <button class="tab-btn" data-tab="devotional" onclick="switchTab('devotional')">Devotional</button>
     </div>
 
     <!-- Teachings tab -->
@@ -328,6 +329,52 @@
         <button class="btn btn-primary btn-sm" onclick="openArticleModal()">+ Add Article</button>
       </div>
       <div class="item-list" id="articlesList"></div>
+    </div>
+
+    <!-- Devotional tab -->
+    <div class="tab-content" id="devotionalTab">
+      <div class="section-header">
+        <h3>Daily Devotional</h3>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-input" id="dDate" style="max-width:240px" />
+      </div>
+      <div class="bilingual-grid">
+        <div class="lang-col">
+          <h4>English</h4>
+          <div class="form-group">
+            <label class="form-label">Verse</label>
+            <input type="text" class="form-input" id="dEnVerse" placeholder="Isaiah 40:31 — But those who wait..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reflection</label>
+            <textarea class="form-textarea" id="dEnReflection" placeholder="Write the reflection..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Prayer</label>
+            <textarea class="form-textarea" id="dEnPrayer" placeholder="Write the prayer..."></textarea>
+          </div>
+        </div>
+        <div class="lang-col">
+          <h4>Tigrinya</h4>
+          <div class="form-group">
+            <label class="form-label">Verse</label>
+            <input type="text" class="form-input" id="dTigVerse" placeholder="ኢሳይያስ 40:31 —..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reflection</label>
+            <textarea class="form-textarea" id="dTigReflection" placeholder="ኣስተንትኖ ጸሓፉ..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Prayer</label>
+            <textarea class="form-textarea" id="dTigPrayer" placeholder="ጸሎት ጸሓፉ..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:flex;justify-content:flex-end">
+        <button class="btn btn-primary" onclick="saveDevotional()">Save Devotional</button>
+      </div>
     </div>
   </div>
 
@@ -360,11 +407,17 @@
         </div>
       </div>
       <div class="shared-fields">
-        <div class="form-group">
-          <label class="form-label">YouTube URL</label>
-          <input type="text" class="form-input" id="tVideoUrl" placeholder="https://www.youtube.com/watch?v=..." oninput="previewThumb()" />
-          <img class="thumb-preview" id="tThumbPreview" alt="Thumbnail preview" />
+        <div class="shared-fields-row">
+          <div class="form-group">
+            <label class="form-label">YouTube URL</label>
+            <input type="text" class="form-input" id="tVideoUrl" placeholder="https://www.youtube.com/watch?v=..." oninput="previewThumb()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Thumbnail URL (optional — auto-fills from YouTube)</label>
+            <input type="text" class="form-input" id="tThumbUrl" placeholder="https://i.ytimg.com/vi/.../hqdefault.jpg" oninput="previewCustomThumb()" />
+          </div>
         </div>
+        <img class="thumb-preview" id="tThumbPreview" alt="Thumbnail preview" />
       </div>
       <div class="modal-actions">
         <button class="btn btn-ghost" onclick="closeModal('teachingModal')">Cancel</button>
@@ -451,6 +504,7 @@
     let username = localStorage.getItem('cgm-admin-user') || '';
     let teachings = [], teachingsTig = [];
     let articles = [], articlesTig = [];
+    let devotional = {}, devotionalTig = {};
     let fileShas = {};
     let editingIndex = -1;
     let savingInProgress = false;
@@ -575,35 +629,45 @@
 
     /* ── Load data ── */
     async function loadData() {
-      const [tEn, tTig, aEn, aTig] = await Promise.all([
+      const [tEn, tTig, aEn, aTig, dEn, dTig] = await Promise.all([
         getFile('teachings.json'),
         getFile('teachings_tig.json'),
         getFile('articles.json'),
-        getFile('articles_tig.json')
+        getFile('articles_tig.json'),
+        getFile('devotional.json'),
+        getFile('devotional_tig.json')
       ]);
       teachings = tEn ? JSON.parse(tEn.content) : [];
       teachingsTig = tTig ? JSON.parse(tTig.content) : [];
       articles = aEn ? JSON.parse(aEn.content) : [];
       articlesTig = aTig ? JSON.parse(aTig.content) : [];
+      devotional = dEn ? JSON.parse(dEn.content) : {};
+      devotionalTig = dTig ? JSON.parse(dTig.content) : {};
       fileShas = {
         'teachings.json': tEn ? tEn.sha : null,
         'teachings_tig.json': tTig ? tTig.sha : null,
         'articles.json': aEn ? aEn.sha : null,
-        'articles_tig.json': aTig ? aTig.sha : null
+        'articles_tig.json': aTig ? aTig.sha : null,
+        'devotional.json': dEn ? dEn.sha : null,
+        'devotional_tig.json': dTig ? dTig.sha : null
       };
     }
 
     async function refreshShas() {
-      const [tEn, tTig, aEn, aTig] = await Promise.all([
+      const [tEn, tTig, aEn, aTig, dEn, dTig] = await Promise.all([
         getFile('teachings.json'),
         getFile('teachings_tig.json'),
         getFile('articles.json'),
-        getFile('articles_tig.json')
+        getFile('articles_tig.json'),
+        getFile('devotional.json'),
+        getFile('devotional_tig.json')
       ]);
       if (tEn) fileShas['teachings.json'] = tEn.sha;
       if (tTig) fileShas['teachings_tig.json'] = tTig.sha;
       if (aEn) fileShas['articles.json'] = aEn.sha;
       if (aTig) fileShas['articles_tig.json'] = aTig.sha;
+      if (dEn) fileShas['devotional.json'] = dEn.sha;
+      if (dTig) fileShas['devotional_tig.json'] = dTig.sha;
     }
 
     /* ── Show admin ── */
@@ -617,6 +681,7 @@
         document.getElementById('userDisplay').textContent = username;
         renderTeachings();
         renderArticles();
+        renderDevotional();
       } catch (e) {
         showToast('Failed to load data: ' + e.message, 'error');
       } finally {
@@ -691,6 +756,7 @@
         document.getElementById('tTigTitle').value = tig.title || '';
         document.getElementById('tTigExcerpt').value = tig.excerpt || '';
         document.getElementById('tVideoUrl').value = en.video || '';
+        document.getElementById('tThumbUrl').value = en.thumbnail || '';
         previewThumb();
       } else {
         document.getElementById('tEnTitle').value = '';
@@ -698,6 +764,7 @@
         document.getElementById('tTigTitle').value = '';
         document.getElementById('tTigExcerpt').value = '';
         document.getElementById('tVideoUrl').value = '';
+        document.getElementById('tThumbUrl').value = '';
         document.getElementById('tThumbPreview').style.display = 'none';
       }
       document.getElementById('teachingModal').classList.add('open');
@@ -708,11 +775,28 @@
       const url = document.getElementById('tVideoUrl').value;
       const id = extractVideoId(url);
       const img = document.getElementById('tThumbPreview');
-      if (id) {
-        img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+      const thumbInput = document.getElementById('tThumbUrl');
+      if (id && !thumbInput.value.trim()) {
+        const autoThumb = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+        thumbInput.value = autoThumb;
+        img.src = autoThumb;
+        img.style.display = 'block';
+      } else if (thumbInput.value.trim()) {
+        img.src = thumbInput.value.trim();
         img.style.display = 'block';
       } else {
         img.style.display = 'none';
+      }
+    }
+
+    function previewCustomThumb() {
+      const thumbUrl = document.getElementById('tThumbUrl').value.trim();
+      const img = document.getElementById('tThumbPreview');
+      if (thumbUrl) {
+        img.src = thumbUrl;
+        img.style.display = 'block';
+      } else {
+        previewThumb();
       }
     }
 
@@ -728,6 +812,7 @@
       const tigTitle = document.getElementById('tTigTitle').value.trim();
       const tigExcerpt = document.getElementById('tTigExcerpt').value.trim();
       const videoUrl = document.getElementById('tVideoUrl').value.trim();
+      const thumbUrl = document.getElementById('tThumbUrl').value.trim();
 
       if (!enTitle || !videoUrl) {
         showToast('English title and YouTube URL are required', 'error');
@@ -735,7 +820,7 @@
       }
 
       const videoId = extractVideoId(videoUrl);
-      const thumbnail = videoId ? 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg' : '';
+      const thumbnail = thumbUrl || (videoId ? 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg' : '');
 
       const enObj = { title: enTitle, excerpt: enExcerpt, thumbnail: thumbnail, video: videoUrl };
       const tigObj = { title: tigTitle || enTitle, excerpt: tigExcerpt || enExcerpt, thumbnail: thumbnail, video: videoUrl };
@@ -959,6 +1044,54 @@
         await loadData();
         renderArticles();
       } finally {
+        hideLoading();
+      }
+    }
+
+    /* ── Devotional ── */
+    function renderDevotional() {
+      document.getElementById('dDate').value = devotional.date || new Date().toISOString().split('T')[0];
+      document.getElementById('dEnVerse').value = devotional.verse || '';
+      document.getElementById('dEnReflection').value = devotional.reflection || '';
+      document.getElementById('dEnPrayer').value = devotional.prayer || '';
+      document.getElementById('dTigVerse').value = devotionalTig.verse || '';
+      document.getElementById('dTigReflection').value = devotionalTig.reflection || '';
+      document.getElementById('dTigPrayer').value = devotionalTig.prayer || '';
+    }
+
+    async function saveDevotional() {
+      if (savingInProgress) return;
+      const date = document.getElementById('dDate').value;
+      const enVerse = document.getElementById('dEnVerse').value.trim();
+      const enReflection = document.getElementById('dEnReflection').value.trim();
+      const enPrayer = document.getElementById('dEnPrayer').value.trim();
+      const tigVerse = document.getElementById('dTigVerse').value.trim();
+      const tigReflection = document.getElementById('dTigReflection').value.trim();
+      const tigPrayer = document.getElementById('dTigPrayer').value.trim();
+
+      if (!date || !enVerse) {
+        showToast('Date and English verse are required', 'error');
+        return;
+      }
+
+      devotional = { date: date, verse: enVerse, reflection: enReflection, prayer: enPrayer };
+      devotionalTig = { date: date, verse: tigVerse || enVerse, reflection: tigReflection || enReflection, prayer: tigPrayer || enPrayer };
+
+      savingInProgress = true;
+      showLoading();
+      try {
+        await refreshShas();
+        const r1 = await putFile('devotional.json', JSON.stringify(devotional, null, 2) + '\n', fileShas['devotional.json'], 'Update devotional: ' + date);
+        fileShas['devotional.json'] = r1.content.sha;
+        const r2 = await putFile('devotional_tig.json', JSON.stringify(devotionalTig, null, 2) + '\n', fileShas['devotional_tig.json'], 'Update devotional (Tigrinya): ' + date);
+        fileShas['devotional_tig.json'] = r2.content.sha;
+        showToast('Devotional saved successfully!', 'success');
+      } catch (e) {
+        showToast('Save failed: ' + e.message, 'error');
+        await loadData();
+        renderDevotional();
+      } finally {
+        savingInProgress = false;
         hideLoading();
       }
     }
