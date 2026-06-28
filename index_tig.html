@@ -663,6 +663,46 @@
       flex: 0 0 340px;
       scroll-snap-align: start;
     }
+
+    /* Bible Study Section */
+    .bible-study-row{
+      margin-top: 18px;
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 6px 4px 14px;
+      scroll-snap-type: x mandatory;
+    }
+    .bible-study-row::-webkit-scrollbar{ height: 10px; }
+    .bible-study-row::-webkit-scrollbar-thumb{
+      background: rgba(212,175,55,.25);
+      border-radius: 999px;
+    }
+    .bible-study-row::-webkit-scrollbar-track{
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+    }
+    .bible-study-card{
+      flex: 0 0 250px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pdf-badge{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,.30);
+      background: linear-gradient(135deg, rgba(212,175,55,.28), rgba(0,0,0,.2));
+      color: var(--gold2);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      width: fit-content;
+    }
   </style>
 </head>
 
@@ -755,6 +795,7 @@ fetch("devotional_tig.json")
           <li><a href="#mission">ተልእኾ</a></li>
           <li><a href="#teaching">ትምህርቲ</a></li>
           <li><a href="#articles">ጽሑፋት</a></li>
+          <li><a href="#bible-study">ጽናዕ</a></li>
           <li><a href="#devotionals">መንፈሳዊ መግቢ</a></li>
           <li><a href="#testimonies">ምስክርነታት</a></li>
           <li><a href="#contact">ርክብ</a></li>
@@ -946,6 +987,58 @@ fetch("devotional_tig.json")
 
         <div class="articles-row" id="articlesRow" aria-label="Articles list">
           </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- BIBLE STUDY -->
+    <section id="bible-study" aria-label="Galatians Bible study series section">
+      <div class="wrap">
+        <div class="pill">ጽናዕ</div>
+        <h2 class="serif">ናይ ገላትያ ስርዓተ-ጽናዕ</h2>
+        <p style="max-width: 78ch;">
+          ኣብ ናይ ጳውሎስ ናይ ጸጋ፣ ናጻነትን ኣብ መንፈስ ናይ ምንባርን መልእኽቲ ዝሓዘ ሓሙሽተ ናይ ጽናዕ ሰነዳት ኣቢልኩም ኣብ ናይ ገላትያ መጽሓፍ ቅዱስ ዝያዳ ዘልቁ።
+        </p>
+
+        <div class="bible-study-row">
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">ገላትያ — ክፋል 1</h3>
+            <p style="flex:1;">ናይ ገላትያ ጽናዕ ስርዓት ፈለማ ክፋል።</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%201.pdf" download>ወርዶ ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">ገላትያ — ክፋል 2</h3>
+            <p style="flex:1;">ናይ ገላትያ ጽናዕ ስርዓት ካልኣይ ክፋል።</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%202.pdf" download>ወርዶ ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">ገላትያ — ክፋል 3</h3>
+            <p style="flex:1;">ናይ ገላትያ ጽናዕ ስርዓት ሳልሳይ ክፋል።</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%203.pdf" download>ወርዶ ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">ገላትያ — ክፋል 4</h3>
+            <p style="flex:1;">ናይ ገላትያ ጽናዕ ስርዓት ራብዓይ ክፋል።</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%204.pdf" download>ወርዶ ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">ገላትያ — ክፋል 5</h3>
+            <p style="flex:1;">ናይ ገላትያ ጽናዕ ስርዓት ሓምሻይ ክፋል።</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%205.PDF" download>ወርዶ ↓</a>
+          </div>
+
+        </div>
 
         <div class="divider" aria-hidden="true"></div>
       </div>

@@ -663,6 +663,46 @@
       flex: 0 0 340px;
       scroll-snap-align: start;
     }
+
+    /* Bible Study Section */
+    .bible-study-row{
+      margin-top: 18px;
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 6px 4px 14px;
+      scroll-snap-type: x mandatory;
+    }
+    .bible-study-row::-webkit-scrollbar{ height: 10px; }
+    .bible-study-row::-webkit-scrollbar-thumb{
+      background: rgba(212,175,55,.25);
+      border-radius: 999px;
+    }
+    .bible-study-row::-webkit-scrollbar-track{
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+    }
+    .bible-study-card{
+      flex: 0 0 250px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pdf-badge{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,.30);
+      background: linear-gradient(135deg, rgba(212,175,55,.28), rgba(0,0,0,.2));
+      color: var(--gold2);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      width: fit-content;
+    }
   </style>
 </head>
 
@@ -760,6 +800,7 @@ fetch("devotional.json")
           <li><a href="#mission">Mission</a></li>
           <li><a href="#teaching">Teaching</a></li>
           <li><a href="#articles">Articles</a></li>
+          <li><a href="#bible-study">Bible Study</a></li>
           <!-- <li><a href="#wednesday">Service</a></li> -->
           <!-- <li><a href="#thursday">Live</a></li> -->
           <li><a href="#devotionals">Devotionals</a></li>
@@ -965,6 +1006,59 @@ fetch("devotional.json")
 
         <div class="articles-row" id="articlesRow" aria-label="Articles list">
           <!-- JS injects article cards here -->
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- BIBLE STUDY -->
+    <section id="bible-study" aria-label="Galatians Bible study series section">
+      <div class="wrap">
+        <div class="pill">Bible Study</div>
+        <h2 class="serif">Galatians — Study Series</h2>
+        <p style="max-width: 78ch;">
+          Dive deeper into God's Word with these five in-depth study materials on the Book of Galatians —
+          exploring Paul's message of grace, freedom, and life in the Spirit.
+        </p>
+
+        <div class="bible-study-row">
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">Galatians — Part 1</h3>
+            <p style="flex:1;">Session 1 of the Galatians Bible study series.</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%201.pdf" download>Download ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">Galatians — Part 2</h3>
+            <p style="flex:1;">Session 2 of the Galatians Bible study series.</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%202.pdf" download>Download ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">Galatians — Part 3</h3>
+            <p style="flex:1;">Session 3 of the Galatians Bible study series.</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%203.pdf" download>Download ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">Galatians — Part 4</h3>
+            <p style="flex:1;">Session 4 of the Galatians Bible study series.</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%204.pdf" download>Download ↓</a>
+          </div>
+
+          <div class="card bible-study-card">
+            <div class="pdf-badge">PDF</div>
+            <h3 class="serif">Galatians — Part 5</h3>
+            <p style="flex:1;">Session 5 of the Galatians Bible study series.</p>
+            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%205.PDF" download>Download ↓</a>
+          </div>
+
         </div>
 
         <div class="divider" aria-hidden="true"></div>
