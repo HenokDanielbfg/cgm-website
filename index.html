@@ -683,11 +683,25 @@
       border-radius: 999px;
     }
     .bible-study-card{
-      flex: 0 0 250px;
+      flex: 0 0 300px;
       scroll-snap-align: start;
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+    .bible-study-card audio{
+      width: 100%;
+      margin: 4px 0;
+      border-radius: 8px;
+    }
+    .bible-study-btns{
+      display: flex;
+      gap: 8px;
+    }
+    .bible-study-btns .btn{
+      flex: 1;
+      justify-content: center;
+      font-size: 14px;
     }
     .pdf-badge{
       display: inline-flex;
@@ -1025,38 +1039,58 @@ fetch("devotional.json")
         <div class="bible-study-row">
 
           <div class="card bible-study-card">
-            <div class="pdf-badge">PDF</div>
+            <div class="pdf-badge">PDF + Audio</div>
             <h3 class="serif">Galatians — Part 1</h3>
             <p style="flex:1;">Session 1 of the Galatians Bible study series.</p>
-            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%201.pdf" download>Download ↓</a>
+            <audio controls src="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/1.m4a.mp4"></audio>
+            <div class="bible-study-btns">
+              <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%201.pdf" download>PDF ↓</a>
+              <a class="btn btn-ghost" href="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/1.m4a.mp4" download>Audio ↓</a>
+            </div>
           </div>
 
           <div class="card bible-study-card">
-            <div class="pdf-badge">PDF</div>
+            <div class="pdf-badge">PDF + Audio</div>
             <h3 class="serif">Galatians — Part 2</h3>
             <p style="flex:1;">Session 2 of the Galatians Bible study series.</p>
-            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%202.pdf" download>Download ↓</a>
+            <audio controls src="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/2.m4a.mp4"></audio>
+            <div class="bible-study-btns">
+              <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%202.pdf" download>PDF ↓</a>
+              <a class="btn btn-ghost" href="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/2.m4a.mp4" download>Audio ↓</a>
+            </div>
           </div>
 
           <div class="card bible-study-card">
-            <div class="pdf-badge">PDF</div>
+            <div class="pdf-badge">PDF + Audio</div>
             <h3 class="serif">Galatians — Part 3</h3>
             <p style="flex:1;">Session 3 of the Galatians Bible study series.</p>
-            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%203.pdf" download>Download ↓</a>
+            <audio controls src="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/3.m4a.mp4"></audio>
+            <div class="bible-study-btns">
+              <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%203.pdf" download>PDF ↓</a>
+              <a class="btn btn-ghost" href="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/3.m4a.mp4" download>Audio ↓</a>
+            </div>
           </div>
 
           <div class="card bible-study-card">
-            <div class="pdf-badge">PDF</div>
+            <div class="pdf-badge">PDF + Audio</div>
             <h3 class="serif">Galatians — Part 4</h3>
             <p style="flex:1;">Session 4 of the Galatians Bible study series.</p>
-            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%204.pdf" download>Download ↓</a>
+            <audio controls src="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/4.m4a.mp4"></audio>
+            <div class="bible-study-btns">
+              <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%204.pdf" download>PDF ↓</a>
+              <a class="btn btn-ghost" href="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/4.m4a.mp4" download>Audio ↓</a>
+            </div>
           </div>
 
           <div class="card bible-study-card">
-            <div class="pdf-badge">PDF</div>
+            <div class="pdf-badge">PDF + Audio</div>
             <h3 class="serif">Galatians — Part 5</h3>
             <p style="flex:1;">Session 5 of the Galatians Bible study series.</p>
-            <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%205.PDF" download>Download ↓</a>
+            <audio controls src="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/5.m4a.mp4"></audio>
+            <div class="bible-study-btns">
+              <a class="btn btn-outline" href="resources/%E1%8C%88%E1%88%8B%E1%89%B5%E1%8B%AB%205.PDF" download>PDF ↓</a>
+              <a class="btn btn-ghost" href="https://github.com/HenokDanielbfg/cgm-website/releases/download/v1.0-galatians-audio/5.m4a.mp4" download>Audio ↓</a>
+            </div>
           </div>
 
         </div>

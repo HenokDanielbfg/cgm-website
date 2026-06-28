@@ -1,0 +1,6 @@
+# Audio files are hosted on GitHub Releases, not in the repo
+*.m4a.mp4
+*.m4a
+*.mp3
+*.wav
+*.ogg
